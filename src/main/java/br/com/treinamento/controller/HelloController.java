@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @RestController
-@RequestMapping("/hello")
+@RequestMapping("/health")
 @Schema(name = "Hello Controller", description = "Testar se a aplicação esta online")
 public class HelloController {
 
     @GetMapping
-    public String olaMundo() {
-        return "Hello World Spring!";
+    public String health() {
+        return "Server UP!";
     }
 }
