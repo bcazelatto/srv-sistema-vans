@@ -13,12 +13,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Table(name = "alunos")
 @Entity(name = "aluno")
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @EqualsAndHashCode(of = "id")
 public class Aluno {
 	
@@ -75,4 +76,13 @@ public class Aluno {
 	public void excluir() {
 		this.ativo = false;		
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
 }

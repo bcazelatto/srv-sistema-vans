@@ -8,8 +8,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 @RestController
 @RequestMapping("/health")
-@Schema(name = "Hello Controller", description = "Testar se a aplicação esta online")
-public class HelloController {
+@Schema(name = "Health Controller", description = "Testar status da aplicação - Online")
+public class HealthController {
 
     @GetMapping
     public String health() {
