@@ -2,7 +2,6 @@ package br.com.treinamento.model;
 
 import br.com.treinamento.dtos.request.atualizar.AtualizarEnderecoPessoalDto;
 import br.com.treinamento.dtos.request.cadastrar.CadastrarEnderecoPessoalDto;
-import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

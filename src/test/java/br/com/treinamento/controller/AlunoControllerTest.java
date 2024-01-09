@@ -25,8 +25,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext.Empty;
-
 import br.com.treinamento.dtos.request.atualizar.AtualizarAlunoDto;
 import br.com.treinamento.dtos.request.cadastrar.CadastrarAlunoDto;
 import br.com.treinamento.dtos.request.cadastrar.CadastrarEnderecoEscolarDto;
@@ -75,7 +73,7 @@ class AlunoControllerTest {
 	        return alunoSalvo;
 	    });
 
-	    ResponseEntity responseEntity = alunoController.cadastrar(dadosDto, uriBuilder);
+	    ResponseEntity<?> responseEntity = alunoController.cadastrar(dadosDto, uriBuilder);
 
 	    assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 	    assertEquals("http://localhost/alunos/1", responseEntity.getHeaders().getLocation().toString());
@@ -123,7 +121,7 @@ class AlunoControllerTest {
 		
 		when(repository.getReferenceById(update.id())).thenReturn(aluno);
 		
-		ResponseEntity responseEntity = alunoController.atualizar(update);
+		ResponseEntity<?> responseEntity = alunoController.atualizar(update);
 		
 	    DetalhamentoAlunoDto detalhamentoAlunoDto = (DetalhamentoAlunoDto) responseEntity.getBody();
 		
@@ -142,7 +140,7 @@ class AlunoControllerTest {
 		
 		when(repository.getReferenceById(anyLong())).thenReturn(aluno);
 		
-		ResponseEntity responseEntity = alunoController.excluir(1L);
+		ResponseEntity<?> responseEntity = alunoController.excluir(1L);
 
 		assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
 		
@@ -159,7 +157,7 @@ class AlunoControllerTest {
 		
 		when(repository.getReferenceById(anyLong())).thenReturn(alunosMocks.get(0));
 		
-		ResponseEntity responseEntity = alunoController.listarUmAluno(1L);
+		ResponseEntity<?> responseEntity = alunoController.listarUmAluno(1L);
 		
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 	    assertEquals(responseEntity.getBody().toString().getClass(), aluno1.toString().getClass());

@@ -25,7 +25,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(path = "alunos")
+@RequestMapping(path = "/alunos")
 @Schema(name = "Aluno Controller", description = "Controller Principal")
 public class AlunoController {
 	
@@ -34,7 +34,7 @@ public class AlunoController {
 	
 	@PostMapping
 	@Transactional
-	public ResponseEntity cadastrar(@RequestBody @Valid CadastrarAlunoDto dados, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<?> cadastrar(@RequestBody @Valid CadastrarAlunoDto dados, UriComponentsBuilder uriBuilder) {
 		var aluno = new Aluno(dados);
 		repository.save(aluno);
 		
@@ -59,7 +59,7 @@ public class AlunoController {
 	
 	@PutMapping
 	@Transactional
-	public ResponseEntity atualizar(@RequestBody @Valid AtualizarAlunoDto dados) {
+	public ResponseEntity<?> atualizar(@RequestBody @Valid AtualizarAlunoDto dados) {
 		var aluno = repository.getReferenceById(dados.id());
 		aluno.atualizarInformacoes(dados);
 		
@@ -69,7 +69,7 @@ public class AlunoController {
 	
 	@DeleteMapping("/{id}")
 	@Transactional
-	public ResponseEntity excluir(@PathVariable Long id) {
+	public ResponseEntity<?> excluir(@PathVariable Long id) {
 		var aluno = repository.getReferenceById(id);
 		aluno.excluir();
 		
@@ -77,7 +77,7 @@ public class AlunoController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity listarUmAluno(@PathVariable Long id) {
+	public ResponseEntity<?> listarUmAluno(@PathVariable Long id) {
 		var aluno = repository.getReferenceById(id);
 		return ResponseEntity.ok(new DetalhamentoAlunoDto(aluno));
 	}
